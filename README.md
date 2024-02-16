@@ -7,3 +7,5 @@
 6. Therefore, the inputs & outputs of the demo models are slightly different from the original one.
 7. The REX model now supports Chinese text exclusively.
 8. We will make the exported method public later.
+
+![Demo Animation](https://github.com/DakeQQ/Classify-and-Extract-for-Android/blob/main/extract.gif?raw=true)
