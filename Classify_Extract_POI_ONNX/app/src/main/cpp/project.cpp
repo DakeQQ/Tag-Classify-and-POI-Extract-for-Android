@@ -323,7 +323,7 @@ Java_com_example_myapplication_MainActivity_Run_1Classify_1Extract(JNIEnv *env, 
             index_i++;
         }
     }
-    void* output_tensors_buffer_A;
+    void* output_tensors_buffer_0;
     {
         OrtMemoryInfo *memory_info;
         ort_runtime_A->CreateCpuMemoryInfo(OrtArenaAllocator, OrtMemTypeDefault, &memory_info);
@@ -340,9 +340,9 @@ Java_com_example_myapplication_MainActivity_Run_1Classify_1Extract(JNIEnv *env, 
         ort_runtime_A->Run(session_model_A, nullptr, input_names_A.data(), (const OrtValue* const*)input_tensors_A.data(),
                            input_tensors_A.size(), output_names_A.data(), output_names_A.size(),
                            output_tensors_A.data());
-        ort_runtime_A->GetTensorMutableData(output_tensors_A[0], &output_tensors_buffer_A);
+        ort_runtime_A->GetTensorMutableData(output_tensors_A[0], &output_tensors_buffer_0);
     }
-    auto* output_A = reinterpret_cast<float*>(output_tensors_buffer_A);
+    auto* output_A = reinterpret_cast<float*>(output_tensors_buffer_0);
     index_i = 0;
     int count = 0;
     std::vector<int> logit_results(max_token_limit_REX - save_tag_size[task_id],-1);
