@@ -342,7 +342,7 @@ Java_com_example_myapplication_MainActivity_Run_1Classify_1Extract(JNIEnv *env, 
                            output_tensors_A.data());
         ort_runtime_A->GetTensorMutableData(output_tensors_A[0], &output_tensors_buffer_0);
     }
-    auto* output_A = reinterpret_cast<float*>(output_tensors_buffer_0);
+    auto* output_0 = reinterpret_cast<float*>(output_tensors_buffer_0);
     index_i = 0;
     int count = 0;
     std::vector<int> logit_results(max_token_limit_REX - save_tag_size[task_id],-1);
@@ -352,7 +352,7 @@ Java_com_example_myapplication_MainActivity_Run_1Classify_1Extract(JNIEnv *env, 
                 if ((i == tag_position_offset) | (j == tag_position_offset)) {
                     continue;
                 }
-                if (output_A[index_i + j] > 0) {
+                if (output_0[index_i + j] > 0) {
                     logit_results[count] = i - save_tag_size[task_id];
                     logit_results[count + 1] = j - save_tag_size[task_id];
                     count += tag_position_offset;
@@ -366,7 +366,7 @@ Java_com_example_myapplication_MainActivity_Run_1Classify_1Extract(JNIEnv *env, 
                 if (i == j) {
                     continue;
                 }
-                if (output_A[index_i + j] > 0) {
+                if (output_0[index_i + j] > 0) {
                     logit_results[count] = i;
                     logit_results[count + 1] = j;
                     count += tag_position_offset;
