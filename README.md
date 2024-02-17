@@ -8,6 +8,7 @@
 7. The REX model now supports Chinese text exclusively.
 8. We will make the exported method public later.
 
+
 1. 在Android设备上进行标签分类和POI提取的演示。
 2. 演示模型已上传至云端硬盘：https://drive.google.com/drive/folders/1ZWwhSwnEM2DtlLKVMdEB3OxKKPjWUn4T?usp=drive_link
 3. 下载后，请将模型文件放入assets文件夹。
