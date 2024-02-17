@@ -217,24 +217,32 @@ public class MainActivity extends AppCompatActivity {
             addHistory(ChatMessage.TYPE_SERVER,"Time Cost: " + (System.currentTimeMillis() - start_time) + "ms");
             addHistory(ChatMessage.TYPE_SERVER,"\n\n分类结果 The Classification: \n" + classify_tag[class_answer]);
             addHistory(ChatMessage.TYPE_SERVER,"\n\n提取结果 The Extraction: \n");
-            if (extract_places.length() > 0) {
-                extract_places.insert(0, "目的地 Destination: ");
-                addHistory(ChatMessage.TYPE_SERVER,extract_places + "\n");
-            }
-            if (extract_numbers.length() > 0) {
-                String digit_values = NumberConverter(extract_numbers.toString());
-                extract_numbers.setLength(0);
-                extract_numbers.append("数值 Values: ");
-                extract_numbers.append(digit_values);
-                addHistory(ChatMessage.TYPE_SERVER,extract_numbers + "\n");
-            }
-            if (extract_names.length() > 0) {
-                extract_names.insert(0, "人名 Name: ");
-                addHistory(ChatMessage.TYPE_SERVER,extract_names + "\n");
-            }
-            if (extract_songs.length() > 0) {
-                extract_songs.insert(0, "歌曲名 Song: ");
-                addHistory(ChatMessage.TYPE_SERVER,extract_songs + "\n");
+            switch (class_answer) {
+                case 1 -> {
+                    if (extract_places.length() > 0) {
+                        extract_places.insert(0, "目的地 Destination: ");
+                        addHistory(ChatMessage.TYPE_SERVER,extract_places + "\n");
+                    }
+                }
+                case 2 -> {
+                    if (extract_names.length() > 0) {
+                        extract_names.insert(0, "人名 Name: ");
+                        addHistory(ChatMessage.TYPE_SERVER,extract_names + "\n");
+                    }
+                    if (extract_songs.length() > 0) {
+                        extract_songs.insert(0, "歌曲名 Song: ");
+                        addHistory(ChatMessage.TYPE_SERVER,extract_songs + "\n");
+                    }
+                }
+                case 3, 7 -> {
+                    if (extract_numbers.length() > 0) {
+                        String digit_values = NumberConverter(extract_numbers.toString());
+                        extract_numbers.setLength(0);
+                        extract_numbers.append("数值 Values: ");
+                        extract_numbers.append(digit_values);
+                        addHistory(ChatMessage.TYPE_SERVER,extract_numbers + "\n");
+                    }
+                }
             }
         });
     }
