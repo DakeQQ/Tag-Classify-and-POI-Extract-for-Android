@@ -2,7 +2,7 @@
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_com_example_myapplication_MainActivity_Load_1Models_10(JNIEnv *env, jclass clazz,
+Java_com_example_myapplication_MainActivity_Load_1Models_10(JNIEnv *env, jobject clazz,
                                                             jobject asset_manager,
                                                             jboolean use_gpu,
                                                             jboolean use_fp16,
@@ -47,7 +47,7 @@ Java_com_example_myapplication_MainActivity_Load_1Models_10(JNIEnv *env, jclass 
         ort_runtime_A->AddSessionConfigEntry(session_options_0, "session.dynamic_block_base", "2");  // One block can contain 1 or more cores, and sharing 1 job.
         ort_runtime_A->AddSessionConfigEntry(session_options_0,  // Binding the #cpu to run the model. 'A;B' means A & B work respectively. 'A,B' means A & B work cooperatively.
                                              "session.intra_op_thread_affinities",
-                                             "1;2");  // // It recommends to set at least two small-core for RexUniNLU model with max_token_limit_REX=40. If you export a larger one by yourself, it is better using the big-cores.
+                                             "5;7");  // // It recommends to set at least two small-core for RexUniNLU model with max_token_limit_REX=40. If you export a larger one by yourself, it is better using the big-cores.
         ort_runtime_A->SetIntraOpNumThreads(session_options_0, 3); // dynamic_block_base + 1
         ort_runtime_A->AddSessionConfigEntry(session_options_0, "session.inter_op.allow_spinning",
                                              "1");  // 0 for low power
@@ -127,16 +127,16 @@ Java_com_example_myapplication_MainActivity_Load_1Models_10(JNIEnv *env, jclass 
             }
             ort_runtime_A->SessionOptionsAppendExecutionProvider(session_options_0, "QNN", option_keys.data(), option_values.data(), option_keys.size());
         } else if (use_nnapi) {  // It needs to add the app into /vendor/etc/nnapi_extensions_app_allowlist
-            uint32_t npflags = 0;
+            uint32_t nnapi_flags = 0;
             if (use_gpu | use_dsp_npu) {
-                npflags |= NNAPI_FLAG_CPU_DISABLED;
+                nnapi_flags |= NNAPI_FLAG_CPU_DISABLED;
             } else {
-                npflags |= NNAPI_FLAG_CPU_ONLY;
+                nnapi_flags |= NNAPI_FLAG_CPU_ONLY;
             }
             if (use_fp16) {
-                npflags |= NNAPI_FLAG_USE_FP16;
+                nnapi_flags |= NNAPI_FLAG_USE_FP16;
             }
-            OrtSessionOptionsAppendExecutionProvider_Nnapi(session_options_0, npflags);
+            OrtSessionOptionsAppendExecutionProvider_Nnapi(session_options_0, nnapi_flags);
         } else if (use_xnnpack) {
             option_keys.push_back("intra_op_num_threads");
             option_values.push_back("4");
@@ -204,7 +204,7 @@ Java_com_example_myapplication_MainActivity_Load_1Models_10(JNIEnv *env, jclass 
 
 extern "C"
 JNIEXPORT jboolean JNICALL
-Java_com_example_myapplication_MainActivity_Pre_1Process(JNIEnv *env, jclass clazz) {
+Java_com_example_myapplication_MainActivity_Pre_1Process(JNIEnv *env, jobject clazz) {
     for (int i = 0; i < amount_of_total_task; i++) {
         switch (i) {
             case 0:
