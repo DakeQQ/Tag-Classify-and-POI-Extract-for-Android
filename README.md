@@ -7,7 +7,7 @@
 6. Therefore, the inputs & outputs of the demo models are slightly different from the original one.
 7. The REX model now supports Chinese text exclusively.
 8. We will make the exported method public later.
-//
+# 标签分类和POI提取-安卓
 1. 在Android设备上进行标签分类和POI提取的演示。
 2. 演示模型已上传至云端硬盘：https://drive.google.com/drive/folders/1ZWwhSwnEM2DtlLKVMdEB3OxKKPjWUn4T?usp=drive_link
 3. 下载后，请将模型文件放入assets文件夹。
@@ -16,5 +16,5 @@
 6. 因此，演示模型的输入输出与原始模型略有不同。
 7. REX模型现在仅支持中文文本。
 8. 我们未来会提供转换导出的方法。
-
+# 演示结果 Demo Results
 ![Demo Animation](https://github.com/DakeQQ/Classify-and-Extract-for-Android/blob/main/extract.gif?raw=true)
