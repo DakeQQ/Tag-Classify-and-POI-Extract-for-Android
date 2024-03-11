@@ -216,27 +216,21 @@ public class MainActivity extends AppCompatActivity {
             switch (class_answer) {
                 case 1 -> {
                     if (extract_places.length() > 0) {
-                        extract_places.insert(0, "目的地 Destination: ");
-                        addHistory(ChatMessage.TYPE_SERVER,extract_places + "\n");
+                        addHistory(ChatMessage.TYPE_SERVER,"目的地 Destination: " + extract_places + "\n");
                     }
                 }
                 case 2 -> {
                     if (extract_names.length() > 0) {
-                        extract_names.insert(0, "人名 Name: ");
-                        addHistory(ChatMessage.TYPE_SERVER,extract_names + "\n");
+                        addHistory(ChatMessage.TYPE_SERVER,"人名 Name: " + extract_names + "\n");
                     }
                     if (extract_songs.length() > 0) {
-                        extract_songs.insert(0, "歌曲名 Song: ");
-                        addHistory(ChatMessage.TYPE_SERVER,extract_songs + "\n");
+                        addHistory(ChatMessage.TYPE_SERVER,"歌曲名 Song: " + extract_songs + "\n");
                     }
                 }
                 case 3, 7 -> {
                     if (extract_numbers.length() > 0) {
                         String digit_values = NumberConverter(extract_numbers.toString());
-                        extract_numbers.setLength(0);
-                        extract_numbers.append("数值 Values: ");
-                        extract_numbers.append(digit_values);
-                        addHistory(ChatMessage.TYPE_SERVER,extract_numbers + "\n");
+                        addHistory(ChatMessage.TYPE_SERVER,"数值 Values: " + digit_values + "\n");
                     }
                 }
             }
@@ -329,6 +323,7 @@ public class MainActivity extends AppCompatActivity {
             chineseNumberMap.put("零", 0);
             chineseNumberMap.put("一", 1);
             chineseNumberMap.put("二", 2);
+            chineseNumberMap.put("两", 2);
             chineseNumberMap.put("三", 3);
             chineseNumberMap.put("四", 4);
             chineseNumberMap.put("五", 5);
