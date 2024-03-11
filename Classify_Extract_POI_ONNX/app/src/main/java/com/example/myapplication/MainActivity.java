@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
             return Integer.toString(result);
         }
     }
-    private static class NumberConverter {
+    private static class WordConverter {
         private static final HashMap<String, Integer> chineseNumberMap = new HashMap<>();
         static {
             chineseNumberMap.put("零", 0);
@@ -413,7 +413,7 @@ public class MainActivity extends AppCompatActivity {
             return DigitConverter.convertDigitArrayToNumber(digitSegment.toString().toCharArray());
         }
         if (wordsSegment.length() > 0) {
-            return NumberConverter.convertWordNumberToDigit(wordsSegment.toString());
+            return WordConverter.convertWordNumberToDigit(wordsSegment.toString());
         }
         return "NaN";
     }
