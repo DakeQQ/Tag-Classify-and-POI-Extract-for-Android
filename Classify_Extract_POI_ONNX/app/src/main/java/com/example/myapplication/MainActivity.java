@@ -69,13 +69,11 @@ public class MainActivity extends AppCompatActivity {
         set_photo.setImageResource(R.drawable.psyduck);
         clearButton.setOnClickListener(v -> clearHistory());
         AssetManager mgr = getAssets();
-        runOnUiThread(() -> {
-            Pre_Process();
-            if (!Load_Models_0(mgr,false,false,false,false,false,false)) {
-                addHistory(ChatMessage.TYPE_SYSTEM, "模型加载失败。\nModel loading failed.");
-            }
-        });
-        runOnUiThread(() -> Read_Assets(file_name_vocab_REX, mgr));
+        Pre_Process();
+        if (!Load_Models_0(mgr,false,false,false,false,false,false)) {
+            addHistory(ChatMessage.TYPE_SYSTEM, "模型加载失败。\nModel loading failed.");
+        }
+        Read_Assets(file_name_vocab_REX, mgr);
         Init_Chat();
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
